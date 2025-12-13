@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hanuman Heritage - Luxury Hotel in Chikkamagaluru</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<!-- UPI QR Modal -->
+<div id="upiQRModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="document.getElementById('upiQRModal').style.display='none'">&times;</span>
+    <h3>Scan to Pay with UPI</h3>
+
+    <!-- QR Code Image -->
+    <img src="images/UPI.png" id="upiQRImage" style="width:250px; border:1px solid #ddd; border-radius:10px; padding:5px;">
+
+    <p style="margin-top:10px; font-size:18px;">
+      Total Amount: <strong><span id="qrAmount"></span></strong>
+    </p>
+  </div>
+</div>
+
+<!-- UPI Payment Script -->
+<script>
+function showUPIQR(totalAmount) {
+    document.getElementById("qrAmount").textContent = "₹" + totalAmount;
+    document.getElementById("upiQRModal").style.display = "block";
+}
+
+function payWithUPI() {
+    const subtotal = cart.reduce((sum, item) => sum + item.total, 0);
+    const tax = subtotal * 0.18;
+    const totalAmount = (subtotal + tax).toFixed(2);
+
+    const upiID = "8277373641@upi";
+    const upiName = "Hanuman Heritage";
+
+    const upiLink = `upi://pay?pa=${upiID}&pn=${encodeURIComponent(upiName)}&am=${totalAmount}&cu=INR`;
+
+    // Android fallback intent
+    const intentLink = `intent://pay?pa=${upiID}&pn=${encodeURIComponent(upiName)}&am=${totalAmount}&cu=INR#Intent;scheme=upi;end;`;
+
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+    if (isMobile) {
+        // Attempt direct UPI app launch
+        window.location.href = upiLink;
+
+        // Fallback if blocked
+        setTimeout(() => {
+            window.location.href = intentLink;
+        }, 1500);
+
+    } else {
+        // Desktop fallback - show QR modal
+        showUPIQR(totalAmount);
+        alert("Use your mobile UPI app or scan the QR code to complete the payment.");
+    }
+}
+</script>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <h1>Hanuman Heritage</h1>
+                <p>Chikkamagaluru</p>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active">HOMEPAGE</a></li>
+                <li><a href="#experience" class="nav-link">EXPERIENCE CHICKMAGALURU</a></li>
+                <li><a href="#rooms" class="nav-link">ROOM BOOKINGS</a></li>
+                <li><a href="#events" class="nav-link">FOR EVENT BOOKINGS</a></li>
+                <li><a href="#gallery" class="nav-link">GALLERY</a></li>
+                <li><a href="#contact" class="nav-link">CONTACT US</a></li>
+            </ul>
+            <div class="cart-icon">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count">0</span>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Homepage Section -->
+    <section id="home" class="homepage">
+        <div class="hero-slider">
+            <div class="slide active">
+                <img src="images/Recepetion_Desk.PNG" alt="Hanuman Heritage Hotel: Event Hall">
+                <div class="slide-content">
+                    <h2>Welcome to Hanuman Heritage</h2>
+                    <p>Experience Luxury in the Heart of Chikkamagaluru</p>
+                    <button class="btn-hero-book" onclick="document.getElementById('home').scrollIntoView({ behavior: 'smooth' }); document.getElementById('checkIn').focus();">
+                        <i class="fas fa-calendar-check"></i> Book Now
+                    </button>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="images/Premium_Suite_Room_02.PNG" alt="Hotel Frount View">
+                <div class="slide-content">
+                    <h2>Elegant Accommodations</h2>
+                    <p>Comfortable Rooms with Modern Amenities</p>
+                    <button class="btn-hero-book" onclick="document.getElementById('home').scrollIntoView({ behavior: 'smooth' }); document.getElementById('checkIn').focus();">
+                        <i class="fas fa-calendar-check"></i> Book Now
+                    </button>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="images/Passage.PNG" alt="Hotel Facilities">
+                <div class="slide-content">
+                    <h2>Premium Hospitality</h2>
+                    <p>World-Class Service Awaits You</p>
+                    <button class="btn-hero-book" onclick="document.getElementById('home').scrollIntoView({ behavior: 'smooth' }); document.getElementById('checkIn').focus();">
+                        <i class="fas fa-calendar-check"></i> Book Now
+                    </button>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="images/Event_Hall.JPG" alt="Event Spaces">
+                <div class="slide-content">
+                    <h2>Event Spaces</h2>
+                    <p>Perfect Venues for Your Special Occasions</p>
+                    <button class="btn-hero-book" onclick="document.getElementById('home').scrollIntoView({ behavior: 'smooth' }); document.getElementById('checkIn').focus();">
+                        <i class="fas fa-calendar-check"></i> Book Now
+                    </button>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="images/Hotel_Lobby.PNG" alt="Hotel Lobby">
+                <div class="slide-content">
+                    <h2>Luxurious Lobby</h2>
+                    <p>Elegant Design Meets Comfort</p>
+                    <button class="btn-hero-book" onclick="document.getElementById('home').scrollIntoView({ behavior: 'smooth' }); document.getElementById('checkIn').focus();">
+                        <i class="fas fa-calendar-check"></i> Book Now
+                    </button>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="images/Double_Bed_room_view_01.PNG" alt="Hotel Rooms">
+                <div class="slide-content">
+                    <h2>Spacious Rooms</h2>
+                    <p>Ideal for Your Comfortable Stay</p>
+                    <button class="btn-hero-book" onclick="document.getElementById('home').scrollIntoView({ behavior: 'smooth' }); document.getElementById('checkIn').focus();">
+                        <i class="fas fa-calendar-check"></i> Book Now
+                    </button>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="images/Premium_Suite_Room_01.PNG" alt="Hotel Facilities">
+                <div class="slide-content">
+                    <h2>Modern Facilities</h2>
+                    <p>Everything You Need for a Perfect Stay</p>
+                    <button class="btn-hero-book" onclick="document.getElementById('home').scrollIntoView({ behavior: 'smooth' }); document.getElementById('checkIn').focus();">
+                        <i class="fas fa-calendar-check"></i> Book Now
+                    </button>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="images/Deveramma_Hill_view_of_chikmagalur_karnataka.jpg" alt="Hotel View">
+                <div class="slide-content">
+                    <h2>Beautiful Views</h2>
+                    <p>Experience the Beauty of Chikkamagaluru</p>
+                    <button class="btn-hero-book" onclick="document.getElementById('home').scrollIntoView({ behavior: 'smooth' }); document.getElementById('checkIn').focus();">
+                        <i class="fas fa-calendar-check"></i> Book Now
+                    </button>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="images/LOBBY_01.jpeg" alt="Hotel Interior">
+                <div class="slide-content">
+                    <h2>Luxury Interiors</h2>
+                    <p>Elegantly Designed Spaces</p>
+                    <button class="btn-hero-book" onclick="document.getElementById('home').scrollIntoView({ behavior: 'smooth' }); document.getElementById('checkIn').focus();">
+                        <i class="fas fa-calendar-check"></i> Book Now
+                    </button>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="images/Delux_AC_Room.png" alt="Hotel Facilities">
+                <div class="slide-content">
+                    <h2>Premium Amenities</h2>
+                    <p>Comfort and Luxury Combined</p>
+                    <button class="btn-hero-book" onclick="document.getElementById('home').scrollIntoView({ behavior: 'smooth' }); document.getElementById('checkIn').focus();">
+                        <i class="fas fa-calendar-check"></i> Book Now
+                    </button>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="images/Hirekolule_Lake.JPG" alt="Essence of Chickmagaluru">
+                <div class="slide-content">
+                    <h2>Hirekolale Lake</h2>
+                    <p>Take a scenic drive to the breathtaking lakes nearby</p>
+                    <button class="btn-hero-book" onclick="document.getElementById('home').scrollIntoView({ behavior: 'smooth' }); document.getElementById('checkIn').focus();">
+                        <i class="fas fa-calendar-check"></i> Book Now
+                    </button>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="images/Premium_Suite_Room_01.PNG" alt="Luxury Room">
+                <div class="slide-content">
+                    <h2>Luxury Rooms</h2>
+                    <p>Elegant Spaces for Your Comfort</p>
+                    <button class="btn-hero-book" onclick="document.getElementById('home').scrollIntoView({ behavior: 'smooth' }); document.getElementById('checkIn').focus();">
+                        <i class="fas fa-calendar-check"></i> Book Now
+                    </button>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="images/LOBBY_01.JPEG" alt="Hotel_Lobby">
+                <div class="slide-content">
+                    <h2>Grand Lobby</h2>
+                    <p>Welcome to Unmatched Hospitality</p>
+                    <button class="btn-hero-book" onclick="document.getElementById('home').scrollIntoView({ behavior: 'smooth' }); document.getElementById('checkIn').focus();">
+                        <i class="fas fa-calendar-check"></i> Book Now
+                    </button>
+                </div>
+            </div>
+            <button class="slider-btn prev" onclick="changeSlide(-1)">&#10094;</button>
+            <button class="slider-btn next" onclick="changeSlide(1)">&#10095;</button>
+            <div class="slider-dots">
+                <span class="dot active" onclick="goToSlide(1)"></span>
+                <span class="dot" onclick="goToSlide(2)"></span>
+                <span class="dot" onclick="goToSlide(3)"></span>
+                <span class="dot" onclick="goToSlide(4)"></span>
+                <span class="dot" onclick="goToSlide(5)"></span>
+                <span class="dot" onclick="goToSlide(6)"></span>
+                <span class="dot" onclick="goToSlide(7)"></span>
+                <span class="dot" onclick="goToSlide(8)"></span>
+                <span class="dot" onclick="goToSlide(9)"></span>
+                <span class="dot" onclick="goToSlide(10)"></span>
+                <span class="dot" onclick="goToSlide(11)"></span>
+                <span class="dot" onclick="goToSlide(12)"></span>
+                <span class="dot" onclick="goToSlide(13)"></span>
+            </div>
+        </div>
+
+        <!-- Quick Booking Plugin -->
+        <div class="quick-booking">
+            <div class="booking-container">
+                <h3>Quick Booking</h3>
+                <form id="quickBookingForm" class="booking-form">
+                    <div class="form-group">
+                        <label><i class="fas fa-calendar-check"></i> Check-In Date</label>
+                        <input type="date" id="checkIn" name="checkIn" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-calendar-times"></i> Check-Out Date</label>
+                        <input type="date" id="checkOut" name="checkOut" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-users"></i> Adults</label>
+                        <input type="number" id="adults" name="adults" min="1" value="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-child"></i> Children</label>
+                        <input type="number" id="children" name="children" min="0" value="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-moon"></i> Nights</label>
+                        <input type="number" id="nights" name="nights" min="1" value="1" readonly>
+                    </div>
+					<input type="email" id="customerEmail" placeholder="Enter your email" required>
+                    <button type="submit" class="btn-book-now">
+                        <i class="fas fa-search"></i> Search Rooms
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Chikmagaluru Section -->
+    <section id="experience" class="experience-section">
+        <div class="container">
+            <h2 class="section-title">Experience Chikmagaluru</h2>
+            <div class="experience-content">
+                <div class="experience-text">
+                    <p>Chikmagaluru, nestled in the Western Ghats, is a paradise for nature lovers and coffee enthusiasts. Our hotel offers the perfect base to explore this beautiful hill station.</p>
+                    <h3>Nearby Attractions:</h3>
+                    <ul>
+                        <li><i class="fas fa-mountain"></i> Mullayanagiri Peak - Highest peak in Karnataka</li>
+                        <li><i class="fas fa-tree"></i> Coffee Plantations - Experience coffee culture</li>
+                        <li><i class="fas fa-water"></i> Hebbe Falls - Beautiful waterfall</li>
+                        <li><i class="fas fa-hiking"></i> Baba Budangiri - Scenic mountain range</li>
+                        <li><i class="fas fa-mountain"></i> Kemmangundi - Hill station retreat</li>
+                    </ul>
+                </div>
+                <div class="experience-image">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800" alt="Chikmagaluru Landscape">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Room Bookings Section -->
+    <section id="rooms" class="rooms-section">
+        <div class="container">
+            <h2 class="section-title">Our Rooms & Suites</h2>
+            <p class="section-subtitle">Choose from our carefully curated selection of luxurious accommodations</p>
+            
+            <!-- Room Filters -->
+            <div class="room-filters">
+                <div class="filter-group">
+                    <label><i class="fas fa-filter"></i> Filter by:</label>
+                    <select id="priceFilter" class="filter-select">
+                        <option value="all">All Prices</option>
+                        <option value="budget">Under ₹3000</option>
+                        <option value="mid">₹3000 - ₹6000</option>
+                        <option value="luxury">Above ₹6000</option>
+                    </select>
+                    <select id="capacityFilter" class="filter-select">
+                        <option value="all">All Capacities</option>
+                        <option value="2">2 Guests</option>
+                        <option value="3">3 Guests</option>
+                        <option value="4">4+ Guests</option>
+                    </select>
+                    <select id="sortFilter" class="filter-select">
+                        <option value="default">Sort by</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="name">Name: A to Z</option>
+                    </select>
+                    <button class="btn-reset-filters" onclick="resetFilters()">
+                        <i class="fas fa-redo"></i> Reset
+                    </button>
+                </div>
+            </div>
+
+            <!-- Rooms Grid -->
+            <div class="rooms-grid" id="roomsGrid">
+                <!-- Rooms will be dynamically loaded -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Room Details Modal -->
+    <div id="roomDetailsModal" class="modal">
+        <div class="modal-content room-modal">
+            <div class="modal-header">
+                <h2 id="modalRoomName">Room Details</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="room-detail-content">
+                    <div class="room-detail-images">
+                        <div class="main-image">
+                            <img id="modalMainImage" src="" alt="Room">
+                        </div>
+                        <div class="image-thumbnails" id="imageThumbnails">
+                            <!-- Thumbnails will be loaded here -->
+                        </div>
+                    </div>
+                    <div class="room-detail-info">
+                        <div class="room-detail-price">
+                            <span class="price-label">Starting from</span>
+                            <span class="price-amount" id="modalPrice">₹0</span>
+                            <span class="price-period">/ night</span>
+                        </div>
+                        <div class="room-detail-specs">
+                            <div class="spec-item">
+                                <i class="fas fa-users"></i>
+                                <span id="modalCapacity">2 Guests</span>
+                            </div>
+                            <div class="spec-item">
+                                <i class="fas fa-bed"></i>
+                                <span id="modalBedType">King Size Bed</span>
+                            </div>
+                            <div class="spec-item">
+                                <i class="fas fa-ruler-combined"></i>
+                                <span id="modalSize">Room Size</span>
+                            </div>
+                            <div class="spec-item">
+                                <i class="fas fa-door-open"></i>
+                                <span id="modalRoomsAvailable">Available</span>
+                            </div>
+                        </div>
+                        <div class="room-description" id="modalDescription">
+                            <!-- Description will be loaded here -->
+                        </div>
+                        <div class="room-amenities">
+                            <h3>Amenities</h3>
+                            <div class="amenities-grid" id="modalAmenities">
+                                <!-- Amenities will be loaded here -->
+                            </div>
+                        </div>
+                        <div class="room-actions">
+                            <button class="btn-view-gallery" onclick="viewGallery()">
+                                <i class="fas fa-images"></i> View Gallery
+                            </button>
+                            <button class="btn-book-room" onclick="bookThisRoom()">
+                                <i class="fas fa-calendar-check"></i> Book Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Event Bookings Section -->
+    <section id="events" class="events-section">
+        <div class="container">
+            <h2 class="section-title">Event Bookings</h2>
+            <div class="events-content">
+                <div class="event-card">
+                    <i class="fas fa-heart"></i>
+                    <h3>Weddings</h3>
+                    <p>Make your special day unforgettable with our elegant wedding venues and catering services.</p>
+                </div>
+                <div class="event-card">
+                    <i class="fas fa-briefcase"></i>
+                    <h3>Corporate Events</h3>
+                    <p>Professional meeting rooms and conference facilities for your business needs.</p>
+                </div>
+                <div class="event-card">
+                    <i class="fas fa-birthday-cake"></i>
+                    <h3>Celebrations</h3>
+                    <p>Birthday parties, anniversaries, and other celebrations in style.</p>
+                </div>
+            </div>
+            <button class="btn-contact" onclick="scrollToContact()">Contact for Event Booking</button>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery-section">
+        <div class="container">
+            <h2 class="section-title">Gallery</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="images/Recepetion_Desk.PNG" alt="Hanuman Heritage Hotel">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/Premium_Suite_Room_02.PNG" alt="Hotel Interior">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/Double_Bed_room_view_01.PNG" alt="Hotel Facilities">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/Event_Hall.JPG" alt="Event Spaces">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/Hotel_Lobby.PNG" alt="Hotel Lobby">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/Delux_AC_Room.PNG" alt="Hotel Rooms">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/Passage.PNG" alt="Hotel Facilities">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/LOBBY_01.jpeg" alt="Hotel Interior">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/Deveramma_Hill_view_of_chikmagalur_karnataka.jpg" alt="Hotel Facilities">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/Hotel_Frount_View.jpeg" alt="Hotel Exterior">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/Delux_Non_AC_Room.png" alt="Luxury Room">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/Hotel_Lobby.png" alt="Hotel Lobby">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h3>Address</h3>
+                            <p>Jyothinagar Main Road, Next to Abharan Jewelers,<br>Chikkamagaluru, Karnataka 577101</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h3>Phone</h3>
+                            <p>+91 8792564056</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h3>Email</h3>
+                            <p>hanumanheritage@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="map-container">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2557.9484306662807!2d75.77324717268613!3d13.324145287024544!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bbad9003e4e46cf%3A0x84ce53fb1c4f199e!2sHanuman%20Towers!5e1!3m2!1sen!2sin!4v1763323138471!5m2!1sen!2sin"
+                        width="100%" 
+                        height="400" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                    <p style="margin-top: 10px; text-align: center; color: #666;">
+                        <i class="fas fa-map-marker-alt"></i> 
+                        <a href="https://maps.app.goo.gl/Hxm5hSpjnNXpnVrU7" target="_blank" style="color: #c9a961; text-decoration: none; font-weight: 600;">
+                            View on Google Maps
+                        </a>
+                        <span style="margin: 0 10px;">|</span>
+                        <span>Location Code: 8QFG+M99</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shopping Cart Modal -->
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Booking Cart</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div id="cartItems"></div>
+                <div class="cart-summary">
+                    <div class="summary-row">
+                        <span>Subtotal:</span>
+                        <span id="subtotal">₹0</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Tax (18%):</span>
+                        <span id="tax">₹0</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Total:</span>
+                        <span id="total">₹0</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-clear" onclick="clearCart()">Clear Cart</button>
+                <button class="btn-pay" onclick="showPayment()">Pay Now</button>
+				<button class="btn-pay" onclick="payWithUPI()">Pay with UPI</button>
+                <button class="btn-book" onclick="proceedToBook()">Book Now</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Payment</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="payment-options">
+                    <div class="qr-code">
+                        <h3>Scan QR Code to Pay</h3>
+                        <div id="qrCodeContainer">
+                            <img src="images/UPI.PNG" alt="QR Code">
+                        </div>
+                        <p>UPI ID: 8277373641@upi</p>
+                    </div>
+                </div>
+                <button class="btn-print" onclick="printBill()">Print Bill</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Panel Button (Fixed) -->
+    <button class="admin-btn" onclick="openAdminPanel()">
+        <i class="fas fa-cog"></i> Admin
+    </button>
+
+    <!-- Admin Panel Modal -->
+    <div id="adminModal" class="modal">
+        <div class="modal-content admin-panel">
+            <div class="modal-header">
+                <h2>Admin Panel</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="admin-tabs">
+                    <button class="tab-btn active" onclick="showTab('bookings')">Manage Bookings</button>
+                    <button class="tab-btn" onclick="showTab('reports')">Monthly Sales Report</button>
+                </div>
+                <div id="bookingsTab" class="tab-content active">
+                    <div id="bookingsList"></div>
+                </div>
+                <div id="reportsTab" class="tab-content">
+                    <div id="salesReport"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2024 Hanuman Heritage. All rights reserved.</p>
+        <p>Jyothinagar Main Road, Next to Abharan Jewelers, Chikkamagaluru, Karnataka 577101</p>
+    </footer>
+
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
