@@ -3,12 +3,13 @@ const rooms = [
     {
         id: 1,
         name: "Deluxe Room (Non-AC)",
-        price: 1800,
-        image: "images/EPP_0142.JPG",
+        price: 2500,
+        image: "images/Delux_Non_AC_Room.PNG",
         images: [
-            "images/EPP_0142.JPG",
-            "images/EPP_0113.JPG",
-            "images/EPP_0114.JPG"
+            "images/Delux_Non_AC_Room.PNG",
+            "images/Passage_02.PNG",
+            "images/Double_Bed_room_view_01.PNG",
+			"images/Bathroom_01.PNG"
         ],
         features: ["Double Bed", "TV", "WiFi", "Bathroom", "Fan"],
         capacity: 2,
@@ -20,12 +21,13 @@ const rooms = [
     {
         id: 2,
         name: "Deluxe Room (AC)",
-        price: 2500,
-        image: "images/EPP_0142.JPG",
+        price: 3000,
+        image: "images/Delux_AC_Room.PNG",
         images: [
-            "images/EPP_0142.JPG",
-            "images/EPP_0113.JPG",
-            "images/EPP_0114.JPG"
+            "images/Delux_AC_Room.PNG",
+            "images/Passage_02.PNG",
+            "images/Hotel_Lobby.PNG",
+			"images/Bathroom_01.PNG"
         ],
         features: ["Double Bed", "AC", "TV", "WiFi", "Bathroom"],
         capacity: 2,
@@ -37,12 +39,12 @@ const rooms = [
     {
         id: 3,
         name: "Twin Sharing Room",
-        price: 2200,
-        image: "images/EPP_0113.JPG",
+        price: 2500,
+        image: "images/Twin_Sharing_Beds.PNG",
         images: [
-            "images/EPP_0113.JPG",
-            "images/EPP_0142.JPG",
-            "images/EPP_0114.JPG"
+            "images/Twin_Sharing_Beds.PNG",
+            "images/Passage_01.JPG",
+			"images/Bathroom_02.PNG"
         ],
         features: ["Twin Beds", "AC", "TV", "WiFi", "Bathroom"],
         capacity: 2,
@@ -53,15 +55,15 @@ const rooms = [
     },
     {
         id: 4,
-        name: "Dormitory Room Type I",
-        price: 3500,
-        image: "images/EPP_0123.JPG",
+        name: "Quade Suite",
+        price: 5000,
+        image: "images/Dormitory_Type_I.PNG",
         images: [
-            "images/EPP_0123.JPG",
-            "images/EPP_0114.JPG",
-            "images/EPP_0142.JPG"
+            "images/Dormitory_Type_I.PNG",
+            "images/Bathroom_01.PNG",
+			"images/Passage_02.PNG"
         ],
-        features: ["Multiple Beds", "AC", "TV", "WiFi", "Shared Bathroom", "Locker"],
+        features: ["Multiple Beds", "AC", "TV", "WiFi", "Shared Bathroom"],
         capacity: 4,
         size: "250 sq ft",
         bedType: "Multiple Beds",
@@ -70,32 +72,33 @@ const rooms = [
     },
     {
         id: 5,
-        name: "Dormitory Room Type II",
-        price: 4500,
-        image: "images/EPP_0123.JPG",
+        name: "Seven Wonders",
+        price: "10,000",
+        image: "images/Dormitory_Type_II.PNG",
         images: [
-            "images/EPP_0123.JPG",
-            "images/EPP_0114.JPG",
-            "images/EPP_0142.JPG"
+            "images/Dormitory_Type_II.PNG",
+            "images/Bathroom_01.PNG",
+			"images/Passage_02.PNG"
         ],
-        features: ["Multiple Beds", "AC", "TV", "WiFi", "Shared Bathroom", "Locker"],
-        capacity: 6,
-        size: "250 sq ft",
+        features: ["Multiple Beds", "AC", "TV", "WiFi", "Shared Bathroom"],
+        capacity: "6 to 8",
+        size: "450 sq ft",
         bedType: "Multiple Beds",
         roomsAvailable: 1,
         description: "Large dormitory accommodation ideal for groups of 6. Features comfortable sleeping arrangements with all essential amenities for a group stay."
     },
     {
         id: 6,
-        name: "Premium Suite Room (AC)",
-        price: 4500,
-        image: "images/EPP_0125.JPG",
+        name: "Twin Heritage Suite (AC)",
+        price: 5000,
+        image: "images/Premium_Suite_Room_02.PNG",
         images: [
-            "images/EPP_0125.JPG",
-            "images/EPP_0113.JPG",
-            "images/EPP_0114.JPG"
+            "images/Premium_Suite_Room_02.PNG",
+            "images/Premium_Suite_Room_01.PNG",
+            "images/Bathroom_01.PNG",
+			"images/Passage.PNG"
         ],
-        features: ["King Size Bed", "AC", "TV", "WiFi", "Bathroom", "Balcony", "Mini Bar"],
+        features: ["King Size Bed", "AC", "TV", "WiFi", "Bathroom"],
         capacity: 2,
         size: "280 sq ft",
         bedType: "King Size Bed",
@@ -593,6 +596,32 @@ function proceedToBook() {
     loadBookings();
 }
 
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("bookingForm");
+  const status = document.getElementById("bookingStatus");
+
+  if (form) {
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
+      const data = new FormData(form);
+
+      const response = await fetch(form.action, {
+        method: "POST",
+        body: data,
+        headers: { Accept: "application/json" }
+      });
+
+      if (response.ok) {
+        status.textContent = "Your booking request has been submitted successfully. We will contact you shortly!";
+        form.reset();
+      } else {
+        status.style.color = "red";
+        status.textContent = "Oops! Something went wrong. Please try again.";
+      }
+    });
+  }
+});
+
 // Google Sheets Integration
 async function saveToGoogleSheets(booking) {
     // This is a placeholder for Google Sheets API integration
@@ -961,4 +990,3 @@ window.addEventListener('scroll', function() {
         }
     });
 });
-
