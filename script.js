@@ -4,9 +4,9 @@ const rooms = [
         id: 1,
         name: "Deluxe Room (Non-AC)",
         price: 2500,
-        image: "images/delux_non_ac_room.png",
+        image: "images/Delux_Non_AC_Room.png",
         images: [
-            "images/delux_non_ac_room.png",
+            "images/Delux_Non_AC_Room.png",
             "images/Passage_02.png",
             "images/Double_Bed_room_view_01.png",
 			"images/Bathroom_01.png"
@@ -22,9 +22,9 @@ const rooms = [
         id: 2,
         name: "Deluxe Room (AC)",
         price: 3000,
-        image: "images/delux_ac_room.png",
+        image: "images/Delux_AC_Room.png",
         images: [
-            "images/delux_ac_room.png",
+            "images/Delux_AC_Room.png",
             "images/Passage_02.png",
             "images/Hotel_Lobby.png",
 			"images/Bathroom_01.png"
