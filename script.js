@@ -4,12 +4,12 @@ const rooms = [
         id: 1,
         name: "Deluxe Room (Non-AC)",
         price: 2500,
-        image: "images/Delux_Non_AC_Room.PNG",
+        image: "images/delux_non_ac_room.png",
         images: [
-            "images/Delux_Non_AC_Room.PNG",
-            "images/Passage_02.PNG",
-            "images/Double_Bed_room_view_01.PNG",
-			"images/Bathroom_01.PNG"
+            "images/delux_non_ac_room.png",
+            "images/Passage_02.png",
+            "images/Double_Bed_room_view_01.png",
+			"images/Bathroom_01.png"
         ],
         features: ["Double Bed", "TV", "WiFi", "Bathroom", "Fan"],
         capacity: 2,
@@ -22,12 +22,12 @@ const rooms = [
         id: 2,
         name: "Deluxe Room (AC)",
         price: 3000,
-        image: "images/Delux_AC_Room.PNG",
+        image: "images/delux_ac_room.png",
         images: [
-            "images/Delux_AC_Room.PNG",
-            "images/Passage_02.PNG",
-            "images/Hotel_Lobby.PNG",
-			"images/Bathroom_01.PNG"
+            "images/delux_ac_room.png",
+            "images/Passage_02.png",
+            "images/Hotel_Lobby.png",
+			"images/Bathroom_01.png"
         ],
         features: ["Double Bed", "AC", "TV", "WiFi", "Bathroom"],
         capacity: 2,
@@ -40,11 +40,11 @@ const rooms = [
         id: 3,
         name: "Twin Sharing Room",
         price: 2500,
-        image: "images/Twin_Sharing_Beds.PNG",
+        image: "images/Twin_Sharing_Beds.png",
         images: [
-            "images/Twin_Sharing_Beds.PNG",
-            "images/Passage_01.JPG",
-			"images/Bathroom_02.PNG"
+            "images/Twin_Sharing_Beds.png",
+            "images/Passage_01.jpg",
+			"images/Bathroom_02.png"
         ],
         features: ["Twin Beds", "AC", "TV", "WiFi", "Bathroom"],
         capacity: 2,
@@ -57,11 +57,11 @@ const rooms = [
         id: 4,
         name: "Quade Suite",
         price: 5000,
-        image: "images/Dormitory_Type_I.PNG",
+        image: "images/Dormitory_Type_I.png",
         images: [
-            "images/Dormitory_Type_I.PNG",
-            "images/Bathroom_01.PNG",
-			"images/Passage_02.PNG"
+            "images/Dormitory_Type_I.png",
+            "images/Bathroom_01.png",
+			"images/Passage_02.png"
         ],
         features: ["Multiple Beds", "AC", "TV", "WiFi", "Shared Bathroom"],
         capacity: 4,
@@ -74,11 +74,11 @@ const rooms = [
         id: 5,
         name: "Seven Wonders",
         price: "10,000",
-        image: "images/Dormitory_Type_II.PNG",
+        image: "images/Dormitory_Type_II.png",
         images: [
-            "images/Dormitory_Type_II.PNG",
-            "images/Bathroom_01.PNG",
-			"images/Passage_02.PNG"
+            "images/Dormitory_Type_II.png",
+            "images/Bathroom_01.png",
+			"images/Passage_02.png"
         ],
         features: ["Multiple Beds", "AC", "TV", "WiFi", "Shared Bathroom"],
         capacity: "6 to 8",
@@ -91,12 +91,12 @@ const rooms = [
         id: 6,
         name: "Twin Heritage Suite (AC)",
         price: 5000,
-        image: "images/Premium_Suite_Room_02.PNG",
+        image: "images/Premium_Suite_Room_02.png",
         images: [
-            "images/Premium_Suite_Room_02.PNG",
-            "images/Premium_Suite_Room_01.PNG",
-            "images/Bathroom_01.PNG",
-			"images/Passage.PNG"
+            "images/Premium_Suite_Room_02.png",
+            "images/Premium_Suite_Room_01.png",
+            "images/Bathroom_01.png",
+			"images/Passage.png"
         ],
         features: ["King Size Bed", "AC", "TV", "WiFi", "Bathroom"],
         capacity: 2,
